@@ -43,7 +43,11 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.github.AppIntro:AppIntro:6.3.1")
+    implementation("com.github.bumptech.glide:glide:5.0.5")
+    implementation("androidx.activity:activity-compose:1.7.2")
 }

@@ -1,4 +1,4 @@
-package com.example.hsj135.ui.dashboard;
+package com.example.hsj135.ui.chart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hsj135.databinding.FragmentDashboardBinding;
+import com.example.hsj135.databinding.FragmentChartBinding;
 
-public class DashboardFragment extends Fragment {
+public class ChartFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentChartBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        ChartViewModel chartViewModel =
+                new ViewModelProvider(this).get(ChartViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentChartBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textChart;
+        chartViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
