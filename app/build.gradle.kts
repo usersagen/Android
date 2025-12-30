@@ -47,7 +47,26 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // 第一章依赖
     implementation("com.github.AppIntro:AppIntro:6.3.1")
     implementation("com.github.bumptech.glide:glide:5.0.5")
     implementation("androidx.activity:activity-compose:1.7.2")
+    // 第一章依赖
+    implementation("androidx.appcompat:appcompat:1.0.0") //必须 1.0.0 以上
+    implementation("io.github.scwang90:refresh-layout-kernel:3.0.0-alpha") //核心必须依赖
+    implementation("io.github.scwang90:refresh-header-classics:3.0.0-alpha") //经典刷新头
+//    implementation("io.github.scwang90:refresh-header-radar:3.0.0-alpha") //雷达刷新头
+//    implementation("io.github.scwang90:refresh-header-falsify:3.0.0-alpha") //虚拟刷新头
+    implementation("io.github.scwang90:refresh-header-material:3.0.0-alpha") //谷歌刷新头
+//    implementation("io.github.scwang90:refresh-header-two-level:3.0.0-alpha") //二级刷新头
+    implementation("io.github.scwang90:refresh-footer-ball:3.0.0-alpha") //球脉冲加载
+    implementation("io.github.scwang90:refresh-footer-classics:3.0.0-alpha") //经典加载
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.6.2")
+//    implementation("com.github.leonardoxh:retrofit2-livedata-adapter:1.1.2")
+
 }
