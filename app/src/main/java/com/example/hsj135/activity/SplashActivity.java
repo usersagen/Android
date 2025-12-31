@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ImageView imageView = findViewById(R.id.imageView);
+        ImageView imageView = findViewById(R.id.imageView3);
 
         // 显示GIF
         Glide.with(this)

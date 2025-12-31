@@ -10,16 +10,30 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.hsj135.R;
+import com.example.hsj135.adapter.HomeAdapter;
+import com.example.hsj135.adapter.ImageAdapter;
+import com.example.hsj135.adapter.ImageTitleNumAdapter;
 import com.example.hsj135.bean.NewsBean;
 import com.example.hsj135.databinding.FragmentHomeBinding;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.youth.banner.Banner;
+import com.youth.banner.adapter.BannerAdapter;
+import com.youth.banner.indicator.CircleIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
+    private HomeAdapter homeAdapter;
+    private Banner<?, BannerAdapter<?,?>> banner;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,18 +43,36 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        RefreshLayout refreshLayout = (RefreshLayout) root.findViewById(R.id.refreshLayout);
-        refreshLayout.setOnRefreshListener(refreshlayout -> {
-                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-                getNewsList();
-                getAdList();
+        RefreshLayout refreshLayout = root.findViewById(R.id.refreshLayout);
+        RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        homeAdapter = new HomeAdapter(null);
+        recyclerView.setAdapter(homeAdapter);
+        homeAdapter.setEmptyView(R.layout.empty_home);
+        View headerview = inflater.inflate(R.layout.header_home, container, false);
+        homeAdapter.addHeaderView(headerview);
+        homeAdapter.setHeaderWithEmptyEnable(true);
+        banner = headerview.findViewById(R.id.banner);
+        banner.addBannerLifecycleObserver(this)//添加生命周期观察者
+//                .setIndicator(new CircleIndicator(getContext()));
+                .setBannerGalleryEffect(10,8,0.5f);
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            list.add(R.drawable.pic_item_list_default);
+        }
+        banner.setAdapter(new ImageAdapter(list));
 
+
+        refreshLayout.setOnRefreshListener(refreshlayout -> {
+            refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            getNewsList();
+            getAdList();
 
 
         });
 
         refreshLayout.setOnLoadMoreListener(refreshlayout -> {
-                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
             Toast.makeText(getContext(), "没有更多新闻了哦~", Toast.LENGTH_LONG).show();
         });
         getNewsList();
@@ -50,17 +82,13 @@ public class HomeFragment extends Fragment {
 
     private void getNewsList() {
         homeViewModel.getNewsList().observe(getViewLifecycleOwner(), newsBeans -> {
-            for(NewsBean newsBean : newsBeans) {
-                Log.i("News", newsBean.getNewsName());
-            }
+            homeAdapter.setList(newsBeans);
         });
     }
 
     private void getAdList() {
         homeViewModel.getAdList().observe(getViewLifecycleOwner(), newsBeans -> {
-            for(NewsBean newsBean : newsBeans) {
-                Log.i("Ad", newsBean.getNewsName());
-            }
+            banner.setAdapter(new ImageTitleNumAdapter(newsBeans));
         });
     }
 

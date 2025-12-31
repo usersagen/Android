@@ -69,4 +69,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:2.6.2")
 //    implementation("com.github.leonardoxh:retrofit2-livedata-adapter:1.1.2")
 
+//    第三章依赖
+//    implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.3.2")
+    implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7")
+    implementation("io.github.youth5201314:banner:2.2.3")
+
 }

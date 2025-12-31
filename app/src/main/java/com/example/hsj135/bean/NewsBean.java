@@ -1,6 +1,12 @@
 package com.example.hsj135.bean;
 
-public class NewsBean {
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
+public class NewsBean implements MultiItemEntity {
+    @Override
+    public int getItemType() {
+        return getType();
+    }
 
     /**
      * id : 1
