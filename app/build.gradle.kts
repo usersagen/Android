@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.activity)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -73,5 +75,8 @@ dependencies {
 //    implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.3.2")
     implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7")
     implementation("io.github.youth5201314:banner:2.2.3")
+
+    // 第四章依赖
+    implementation("io.github.justson:agentweb-core:v5.1.1-androidx")
 
 }

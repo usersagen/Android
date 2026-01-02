@@ -17,6 +17,7 @@
         android:layout_marginTop="8dp">
 
         <LinearLayout
+            android:id="@+id/linearLayout_android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,6 +36,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout_java"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,6 +55,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout_python"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,6 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout_php"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

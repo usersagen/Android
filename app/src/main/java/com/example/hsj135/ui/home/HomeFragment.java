@@ -5,11 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,10 +51,10 @@ public class HomeFragment extends Fragment {
         homeAdapter = new HomeAdapter(null);
         recyclerView.setAdapter(homeAdapter);
         homeAdapter.setEmptyView(R.layout.empty_home);
-        View headerview = inflater.inflate(R.layout.header_home, container, false);
-        homeAdapter.addHeaderView(headerview);
+        View headerView = inflater.inflate(R.layout.header_home, container, false);
+        homeAdapter.addHeaderView(headerView);
         homeAdapter.setHeaderWithEmptyEnable(true);
-        banner = headerview.findViewById(R.id.banner);
+        banner = headerView.findViewById(R.id.banner);
         banner.addBannerLifecycleObserver(this)//添加生命周期观察者
 //                .setIndicator(new CircleIndicator(getContext()));
                 .setBannerGalleryEffect(10,8,0.5f);
@@ -77,6 +79,30 @@ public class HomeFragment extends Fragment {
         });
         getNewsList();
         getAdList();
+
+        LinearLayout linearLayout_python = headerView.findViewById(R.id.linearLayout_python);
+        linearLayout_python.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_pythonFragment);
+        });
+        LinearLayout linearLayout_android = headerView.findViewById(R.id.linearLayout_android);
+        linearLayout_android.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_androidFragment);
+        });
+        LinearLayout linearLayout_java = headerView.findViewById(R.id.linearLayout_java);
+        linearLayout_java.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_javaFragment);
+        });
+        LinearLayout linearLayout_php = headerView.findViewById(R.id.linearLayout_php);
+        linearLayout_php.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_phpFragment);
+        });
+
+        homeAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("url", homeAdapter.getData().get(position).getNewsUrl());
+            Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_webFragment, bundle);
+        });
+
         return root;
     }
 
@@ -89,6 +115,11 @@ public class HomeFragment extends Fragment {
     private void getAdList() {
         homeViewModel.getAdList().observe(getViewLifecycleOwner(), newsBeans -> {
             banner.setAdapter(new ImageTitleNumAdapter(newsBeans));
+            banner.setOnBannerListener(( data, position) -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("url", ((NewsBean)data).getNewsUrl());
+                Navigation.findNavController(banner).navigate(R.id.action_navigation_home_to_webFragment, bundle);
+            });
         });
     }
 
