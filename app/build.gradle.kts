@@ -79,4 +79,10 @@ dependencies {
     // 第四章依赖
     implementation("io.github.justson:agentweb-core:v5.1.1-androidx")
 
+    // 第五章依赖
+//    implementation("com.nightonke:boommenu:2.1.1")
+    implementation("com.github.Nightonke:BoomMenu:6ec29918d5")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
 }
