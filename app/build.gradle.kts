@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
+    implementation(libs.viewpager2)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -83,6 +84,9 @@ dependencies {
 //    implementation("com.nightonke:boommenu:2.1.1")
     implementation("com.github.Nightonke:BoomMenu:6ec29918d5")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // 第六章依赖
+    implementation("io.github.carguo:gsyvideoplayer:11.3.0")
 
 
 }
