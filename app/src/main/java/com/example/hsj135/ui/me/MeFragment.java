@@ -8,30 +8,43 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.hsj135.databinding.FragmentMeBinding;
+import androidx.navigation.Navigation;
+import com.example.hsj135.R;
+import com.example.hsj135.bean.User;
+import cn.bmob.v3.BmobUser;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MeFragment extends Fragment {
 
-    private FragmentMeBinding binding;
+
+    private boolean isLogin;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MeViewModel meViewModel =
-                new ViewModelProvider(this).get(MeViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_me, container, false);
 
-        binding = FragmentMeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        CircleImageView circleImageView = root.findViewById(R.id.circleImageView);
+        circleImageView.setOnClickListener(this::click);
+        TextView textView = root.findViewById(R.id.textView);
+        textView.setOnClickListener(this::click);
 
-        final TextView textView = binding.textMe;
-        meViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        if (BmobUser.isLogin()) {
+            User user = BmobUser.getCurrentUser(User.class);
+            textView.setText(user.getUsername());
+            isLogin=true;
+        } else {
+            textView.setText("点击登录/注册");
+            isLogin=false;
+        }
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    private void click(View view) {
+        if (isLogin) {
+            Navigation.findNavController(view).navigate(R.id.action_navigation_me_to_infoFragment);
+        } else {
+            Navigation.findNavController(view).navigate(R.id.action_navigation_me_to_loginFragment);
+        }
     }
+
 }

@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
     implementation(libs.viewpager2)
+    implementation(libs.cardview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -87,6 +88,18 @@ dependencies {
 
     // 第六章依赖
     implementation("io.github.carguo:gsyvideoplayer:11.3.0")
+
+    // 第七章依赖
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation("io.github.bmob:android-sdk:4.1.0")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.9")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation("com.squareup.okhttp3:okhttp:4.8.1")
+    implementation("com.squareup.okio:okio:2.2.2")
+    implementation("com.google.code.gson:gson:2.8.5")
+    implementation("androidx.multidex:multidex:2.0.1")
+
 
 
 }
