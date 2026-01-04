@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,11 @@ public class MeFragment extends Fragment {
             textView.setText("点击登录/注册");
             isLogin=false;
         }
+
+        LinearLayout linearLayout_map = root.findViewById(R.id.linearLayout_map);
+        linearLayout_map.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_navigation_me_to_mapFragment);
+        });
         return root;
     }
 

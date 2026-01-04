@@ -100,6 +100,9 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.5")
     implementation("androidx.multidex:multidex:2.0.1")
 
+    // 第八章依赖
+    implementation(files("libs/BaiduLBS_Android.jar"))
+
 
 
 }
